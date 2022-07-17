@@ -1,89 +1,11 @@
 <template>
   <div>
-    <pre>
-      {{ JSON.stringify(formValues, null, 2) }}
-    </pre>
+    <h2 v-once>{{name}}</h2>
+    <button @click="name='Batman'">Change name</button>
+    <h2 v-pre>{{name}}</h2>
   </div>
 
-  <!--<form @submit="submitForm">-->
-  <form @submit.prevent="submitForm2">
-    <div>
-      <label for="name">Name</label>
-      <input type="text" id="name" v-model.trim.lazy="formValues.name">
-    </div>
-    
-    <div>
-      <label for="profile">Profile Summary</label>
-      <textarea id="profile" v-model="formValues.profileSummary" />  
-    </div>
-
-    <div>
-      <label for="country">Country</label>
-      <select id="country" v-model="formValues.country">
-        <option value="">Select an option</option>
-        <option value="Locombia">Locombia</option>
-        <option value="Polombia">Polombia</option>
-        <option value="Colombia">Colombia</option>
-        <option value="colombiaconp">Esa Colombia con P mayuscula</option>
-      </select>
-    </div>
-
-    <div>
-      <label for="platillo">Platillo</label>
-      <select id="platillo" multiple v-model="formValues.platillo">
-        <option value="cafe">Cafe</option>
-        <option value="pastalofra">Pastalofra</option>
-        <option value="sopa">Sopa</option>
-        <option value="torta">Torta</option>
-      </select>
-    </div>
-
-    <div>
-      <input type="checkbox" id="remote" v-model="formValues.remote">
-      <label for="remote"> Are you willing to work remotely?</label>
-    </div>
-
-    <div>
-      <input type="checkbox" id="estupidity" v-model="formValues.estupidez" true-value="si" false-value="no">
-      <label for="estupidity"> Es usted estupido?</label>
-    </div>
-
-
-    <div>
-      <label>Skill set</label>
-      <input type="checkbox" id="html" value="html" v-model="formValues.setSkills">
-      <label for="html">Html 5</label>
-      <input type="checkbox" id="css" value="css" v-model="formValues.setSkills">
-      <label for="css">CSS</label>
-      <input type="checkbox" id="javascript" value="javascript" v-model="formValues.setSkills">
-      <label for="javascript">Javascript</label>
-    </div>
-
-    <div>
-      <label>Years of war</label>
-      <input type="radio" id="0-2" value="0-2" v-model="formValues.yearsOfExperience">
-      <label for="0-2">0-2</label>
-      <input type="radio" id="3-5" value="3-5" v-model="formValues.yearsOfExperience">
-      <label for="3-5">3-5</label>
-      <input type="radio" id=">6" value=">6" v-model="formValues.yearsOfExperience">
-      <label for=">6">>6</label>
-    </div>
-    
-    <div>
-      <label for="age">Age</label>
-      <input @keyup.enter="submitForm2" type="number" id="age" v-model.number="formValues.age">
-    </div>
-
-    <!--<div>
-      <button>Submit crack!</button>
-    </div>-->
-
-    <!--   OJO   !!!!!!!-->
-    <!-- Hay que investigar sobre todos los modifiers, mouse modifiers,
-    keyboard modifiers, @keyup es el modificador para teclado creo
-    hay que investigar cual es el modificador para raton-->
-
-  </form>
+  
 
 </template>
 
@@ -92,27 +14,11 @@ export default {
   name: 'App',
   data(){
     return {
-      formValues:{
-        name: '',
-        profileSummary: '',
-        country: '',
-        platillo: '',
-        remoteWork: false,
-        estupidez: 'yes',
-        setSkills: [],
-        yearsOfExperience: '',
-        age: null
-      }
+      name: 'Davy Jem'
     }
   },
   methods: {
-    submitForm(event){
-      event.preventDefault();
-      console.log('Form values', this.formValues)
-    },
-    submitForm2(){
-      console.log('Form values', this.formValues)
-    }
+    
 
   },
   
