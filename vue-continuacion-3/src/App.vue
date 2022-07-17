@@ -1,32 +1,62 @@
 <template>
-  <h2>{{1 + 2 + 3}}</h2>
-  <h2>Add method: {{add()}}</h2>
-  <h2>Add method by using parameters: {{addParam(3,4,5)}}</h2>
-  <h2>Multiplication method {{multiply(baseNumber)}}</h2>
+  <h2>{{name}}</h2>
+ <div>
+  <button v-on:mouseover="name = 'Dragonite'"> Cambiar nombre</button>
+ </div>
+
+ <h2>{{counter}}</h2>
+ <div>
+  <button v-on:mouseover="counter += 1">Agregar 1 a la cuenta</button><hr />
+  <button v-on:mouseover="counter -= 1">Disminuir 1 a la cuenta</button>
+ </div>
+<hr />
+ <div>
+  <button @click="incrementar1"> Agrega 1 usando aumentar1</button>
+  <button @click="disminuir1"> Disminuye 1 usando disminuir1</button>
+  <button @click="incrementarNum(5)"> Agrega usando incrmentarNum</button>
+  <button @click="disminuirNum(5)"> Agrega usando desminuirNum</button>
+ 
+ </div>
+  <!--Every single botton goes under a div tag-->
+ <div>
+  <button @mouseenter="cambiarNombre('Don Cachichurris', $event)" 
+  @mouseleave="cambiarNombre('Cabronidas Mendez', $event)">Cambiar el nombre</button>
+
+
+  </div>
+
+
+
 
 </template>
 
 <script>
-
-
 export default {
   name: 'App',
   data(){
     return {
-      baseMultiplayer: 5,
-      baseNumber: 2
+      name: 'Davy Jem',
+      counter: 0
     }
   },
   methods: {
-    add(){
-      return 2+3+4
+    cambiarNombre(nam, event){
+      this.name = nam
+      console.log('Event', event)
     },
-    addParam(a,b,c){
-      return a+b+c
-    },
-    multiply(num){
-      return num * this.baseMultiplayer
-    } 
+   incrementar1(){
+    this.counter += 1
+   },
+   incrementarNum(num){
+    this.counter += num
+   },
+   disminuir1(){
+    this.counter -= 1 
+   },
+   disminuirNum(num){
+    this.counter -= num
+   }
+
 
   },
   
