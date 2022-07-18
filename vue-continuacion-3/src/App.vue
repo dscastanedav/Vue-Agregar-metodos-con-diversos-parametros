@@ -1,11 +1,25 @@
 <template>
-  <div>
-    <h2 v-once>{{name}}</h2>
-    <button @click="name='Batman'">Change name</button>
-    <h2 v-pre>{{name}}</h2>
-  </div>
 
+  <h2>Full name: {{firstName}} {{lastName}}</h2>
+  <h2>Computed full name: {{fullName}} </h2>
+  <!--La forma de abajo no es correcta porque no ayuda a la reutilizacion del codigo
+  en lugar de eso toca mantenerlo diferente en cada lado que se quiera usar-->
+
+  <!--<h2>Total: {{items.reduce((total, curr) => (total += curr.price), 0)}}</h2>-->
   
+  <button @click="items.push({id:'4', title:'keyboard',price:400})">Add item</button>
+
+  <h2>Total using computed propertie: {{totalComputed}}</h2>
+
+  <h2>Total using method: {{getTotal()}}</h2>
+
+  <input type="text" v-model="country" >
+
+  <template v-for="item in items" :key="item.id">
+    <h2 v-if="item.price > 100">{{item.title}} {{item.price}}</h2>
+  </template>
+  
+  <h2 v-for="item in expensiveItems" :key="item.id">{{item.title}} {{item.price}}</h2>
 
 </template>
 
@@ -14,13 +28,47 @@ export default {
   name: 'App',
   data(){
     return {
-      name: 'Davy Jem'
+      firstName: 'Davy',
+      lastName: 'Jem',
+      items: [
+        {
+          id: 1,
+          title: 'TV',
+          price: 100
+        },
+        {
+          id: 2,
+          title: 'Phone',
+          price: 200
+        },
+        {
+          id: 3,
+          title: 'Laptop',
+          price: 300
+        }
+      ],
+      country: ''
     }
   },
   methods: {
-    
+    getTotal(){
+      console.log('getTotal method')
+      return this.items.reduce((total, curr) => (total = total + curr.price), 0)
+    }
 
   },
+  computed:{
+    fullName(){
+      return `${this.firstName} ${this.lastName}`
+    },
+    totalComputed(){
+      console.log('totalComputed propertie')
+      return this.items.reduce((total, curr) => (total = total + curr.price), 0)
+    },
+    expensiveItems(){
+      return this.items.filter(item => item.price > 100)
+    }
+  }
   
 }
 </script>
